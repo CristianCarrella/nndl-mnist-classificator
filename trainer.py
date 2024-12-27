@@ -2,20 +2,27 @@ import sys
 import torch
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
-from hyper_params import HyperParams
+from hyper_params import HyperParams, NetworkHyperParams
 from network import MNISTClassifier
+
 
 class Trainer:
 
-    def __init__(self, model: MNISTClassifier, hyper_params: HyperParams,
-                 training_ds: DataLoader, validation_ds: DataLoader, testing_ds: DataLoader,
-                 device: str):
+    def __init__(self, model: MNISTClassifier,
+                 hyper_params: HyperParams,
+                 training_ds: DataLoader,
+                 validation_ds: DataLoader,
+                 testing_ds: DataLoader,
+                 device: str,
+                 network_hyper_params: NetworkHyperParams,
+                 ):
         self.model = model
         self.hyper_params = hyper_params
         self.training_ds = training_ds
         self.validation_ds = validation_ds
         self.testing_ds = testing_ds
         self.device = device
+        self.network_hyper_params = network_hyper_params
 
         # Initialize lists to store training and validation losses
         self.train_losses = []
@@ -100,7 +107,7 @@ class Trainer:
             plt.plot(range(1, self.hyper_params.epochs + 1), self.validation_losses, label='Validation Loss')
             plt.xlabel('Epoch')
             plt.ylabel('Loss')
-            plt.title('Training and Validation Losses')
+            plt.title(f'Training and Validation Losses\nList of neurons for each hidden layer: {self.network_hyper_params.hidden_layer} \nActivation function: {self.network_hyper_params.activation_fun.value[0]}')
             plt.legend()
             plt.grid(True)
             plt.show()
@@ -120,12 +127,12 @@ class Trainer:
             print(
                 f"Training and validation losses are not the same length. Training losses: {len(self.train_losses)}, Validation losses: {len(self.validation_losses)}")
 
-    def plot_testing_graph(self, good_test, total_test):
-        accuracy = (good_test / total_test) * 100
-        # Plot testing accuracy
-        plt.figure(figsize=(6, 4))
-        plt.bar(['Test Accuracy'], [accuracy])
-        plt.ylabel('Accuracy (%)')
-        plt.title('Testing Accuracy')
-        plt.ylim(0, 100)
-        plt.show()
+    # def plot_testing_graph(self, good_test, total_test):
+    #     accuracy = (good_test / total_test) * 100
+    #     # Plot testing accuracy
+    #     plt.figure(figsize=(6, 4))
+    #     plt.bar(['Test Accuracy'], [accuracy])
+    #     plt.ylabel('Accuracy (%)')
+    #     plt.title('Testing Accuracy')
+    #     plt.ylim(0, 100)
+    #     plt.show()

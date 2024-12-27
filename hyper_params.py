@@ -7,9 +7,9 @@ from torch.optim import Optimizer
 
 
 class ActivationFunction(Enum):
-    RELU = ("relu", nn.ReLU())
-    LEAKY_RELU = ("leakyRelu", nn.LeakyReLU())
-    HYPERBOLIC_TANGENT = ("hyperbolicTangent", nn.Tanh())
+    RELU = ("Relu", nn.ReLU())
+    LEAKY_RELU = ("Leaky Relu", nn.LeakyReLU())
+    HYPERBOLIC_TANGENT = ("Hyperbolic Tangent", nn.Tanh())
 
 
 class HyperParams:

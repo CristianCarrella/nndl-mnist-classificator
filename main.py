@@ -17,11 +17,13 @@ device = (
 )
 
 if __name__ == '__main__':
-    newtork_hyper_params = NetworkHyperParams(
-        hidden_layer = [784, 512, 256, 64, 32],
-        activation_fun = ActivationFunction.RELU
+    network_hyper_params = NetworkHyperParams(
+        hidden_layer=[784, 512, 256, 64, 32],
+        activation_fun=ActivationFunction.HYPERBOLIC_TANGENT
     )
-    model = MNISTClassifier(newtork_hyper_params).to(device)
+    model = MNISTClassifier(network_hyper_params).to(device)
+
+    print(model)
 
     hyper_params = HyperParams(
         epochs=1,  # number of epochs
@@ -34,8 +36,8 @@ if __name__ == '__main__':
     print(f"Error fun: {hyper_params.error_function}")
     print(f"Opt: {hyper_params.optimizer}")
     print(f"Is batch: {hyper_params.is_batch}")
-    print(f"hidden_layer: {newtork_hyper_params.hidden_layer}")
-    print(f"Activation Function: {newtork_hyper_params.activation_fun.value[0]}")
+    print(f"hidden_layer: {network_hyper_params.hidden_layer}")
+    print(f"Activation Function: {network_hyper_params.activation_fun.value[0]}")
 
     custom_dataset = CustomDataset(
         root='./data',
@@ -62,7 +64,8 @@ if __name__ == '__main__':
         training_ds=training_set,
         validation_ds=validation_set,
         testing_ds=test_set,
-        device=device
+        device=device,
+        network_hyper_params=network_hyper_params
     )
 
     if not model.load_model():
