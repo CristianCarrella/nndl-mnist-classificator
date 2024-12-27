@@ -4,7 +4,7 @@ from torchvision.transforms import v2
 import torchvision.transforms as transforms
 
 from dataset import CustomDataset
-from hyper_params import HyperParams
+from hyper_params import HyperParams, ActivationFunction, NetworkHyperParams
 from trainer import Trainer
 from network import MNISTClassifier
 
@@ -17,13 +17,25 @@ device = (
 )
 
 if __name__ == '__main__':
-    model = MNISTClassifier().to(device)  # move operations on GPU
-    hyper_params = HyperParams(
-        epochs=100,  # number of epochs
-        error_function=CrossEntropyLoss(),  # error function
-        optimizer=torch.optim.Rprop(model.parameters(), lr=0.01),  # optimizer
-        is_batch=True,
+    newtork_hyper_params = NetworkHyperParams(
+        hidden_layer = [784, 512, 256, 64, 32],
+        activation_fun = ActivationFunction.RELU
     )
+    model = MNISTClassifier(newtork_hyper_params).to(device)
+
+    hyper_params = HyperParams(
+        epochs=1,  # number of epochs
+        error_function=CrossEntropyLoss(),  # error function
+        is_batch=True,
+        optimizer=torch.optim.Rprop(model.parameters()),  # optimizer
+    )
+
+    print(f"Epochs {hyper_params.epochs}")
+    print(f"Error fun: {hyper_params.error_function}")
+    print(f"Opt: {hyper_params.optimizer}")
+    print(f"Is batch: {hyper_params.is_batch}")
+    print(f"hidden_layer: {newtork_hyper_params.hidden_layer}")
+    print(f"Activation Function: {newtork_hyper_params.activation_fun.value[0]}")
 
     custom_dataset = CustomDataset(
         root='./data',

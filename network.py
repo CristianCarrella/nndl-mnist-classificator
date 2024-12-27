@@ -1,26 +1,29 @@
 import torch
 import torch.nn as nn
+from sympy.strategies.core import switch
+
+from hyper_params import HyperParams, ActivationFunction
 
 model_file_path = '.'
 
 
 class MNISTClassifier(nn.Module):
-    def __init__(self):
+    def __init__(self, hyper_param):
         super().__init__()
-        self.relu = nn.ReLU()
-        self.softmax = nn.Softmax()
-        self.fc1 = nn.Linear(28 * 28, 128)
-        self.fc2 = nn.Linear(128, 64)
-        self.fc3 = nn.Linear(64, 10)
+        self.layers = nn.ModuleList()
+        for i in range(len(hyper_param.hidden_layer) - 1):
+            self.layers.append(nn.Linear(hyper_param.hidden_layer[i], hyper_param.hidden_layer[i + 1]))
+        self.layers.append(nn.Linear(hyper_param.hidden_layer[-1], 10))
+
+        self.activation = hyper_param.activation_fun.value[1]
 
     def forward(self, x):
-        # image pre-processing
-        x = x.squeeze(0)  # remove the channel (not necessary for non conv networks)
-        x = x.view(-1, 28 * 28)  # make flat the images [batch_size, 784]
+        x = x.view(x.size(0), -1)  # [batch_size, 784]
 
-        x = self.relu(self.fc1(x))
-        x = self.relu(self.fc2(x))
-        x = self.fc3(x)
+        for layer in self.layers[:-1]:
+            x = self.activation(layer(x))
+
+        x = self.layers[-1](x)
         return x
 
     def save_model(self):
