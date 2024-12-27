@@ -22,7 +22,7 @@ if __name__ == '__main__':
         epochs=100,  # number of epochs
         error_function=CrossEntropyLoss(),  # error function
         optimizer=torch.optim.Rprop(model.parameters(), lr=0.01),  # optimizer
-        batch_size=32
+        is_batch=True,
     )
 
     custom_dataset = CustomDataset(
@@ -33,8 +33,16 @@ if __name__ == '__main__':
         ])
     )
 
-    training_set, validation_set = custom_dataset.get_training_set(batch_size=hyper_params.batch_size, validation_percentage=0.2)
-    test_set = custom_dataset.get_test_set(batch_size=32)
+    training_set, validation_set = custom_dataset.get_training_set(
+        is_batch=hyper_params.is_batch,
+        validation_percentage=0.2,
+    )
+
+    test_set = custom_dataset.get_test_set()
+
+    print(f"Training set length: {len(training_set.dataset)}")
+    print(f"Validation set length: {len(validation_set.dataset)}")
+    print(f"Test set length: {len(test_set.dataset)}")
 
     trainer = Trainer(
         model=model,  # model to train
@@ -46,9 +54,7 @@ if __name__ == '__main__':
     )
 
     if not model.load_model():
-        # print(torch.version.cuda)  # Deve restituire la versione di CUDA installata
-        # print(torch.cuda.is_available())  # Deve restituire True
-        # print(device)
+        print(f"Is GPU available: {torch.cuda.is_available()}")
         trainer.batch_train()
     else:
         trainer.test()
