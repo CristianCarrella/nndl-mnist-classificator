@@ -22,6 +22,6 @@ class HyperParams:
 
 
 class NetworkHyperParams:
-    def __init__(self, hidden_layer: List[int], activation_fun: ActivationFunction):
+    def __init__(self, hidden_layer: List[int], activation_fun: List[ActivationFunction]):
         self.hidden_layer = hidden_layer
         self.activation_fun = activation_fun

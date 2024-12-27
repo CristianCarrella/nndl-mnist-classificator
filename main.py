@@ -18,15 +18,15 @@ device = (
 
 if __name__ == '__main__':
     network_hyper_params = NetworkHyperParams(
-        hidden_layer=[784, 512, 256, 64, 32],
-        activation_fun=ActivationFunction.HYPERBOLIC_TANGENT
+        hidden_layer=[784, 512, 32],
+        activation_fun=[ActivationFunction.HYPERBOLIC_TANGENT, ActivationFunction.RELU] # has to be hidden_layer len - 1
     )
     model = MNISTClassifier(network_hyper_params).to(device)
 
     print(model)
 
     hyper_params = HyperParams(
-        epochs=1,  # number of epochs
+        epochs=100,  # number of epochs
         error_function=CrossEntropyLoss(),  # error function
         is_batch=True,
         optimizer=torch.optim.Rprop(model.parameters()),  # optimizer
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     print(f"Opt: {hyper_params.optimizer}")
     print(f"Is batch: {hyper_params.is_batch}")
     print(f"hidden_layer: {network_hyper_params.hidden_layer}")
-    print(f"Activation Function: {network_hyper_params.activation_fun.value[0]}")
+    print(f"Activation Function: {network_hyper_params.activation_fun}")
 
     custom_dataset = CustomDataset(
         root='./data',
