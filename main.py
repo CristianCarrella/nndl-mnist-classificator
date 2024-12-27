@@ -1,0 +1,54 @@
+import torch
+from torch.nn import CrossEntropyLoss
+from torchvision.transforms import v2
+import torchvision.transforms as transforms
+
+from dataset import CustomDataset
+from hyper_params import HyperParams
+from trainer import Trainer
+from network import MNISTClassifier
+
+device = (
+    "cuda"
+    if torch.cuda.is_available()
+    else "mps"
+    if torch.backends.mps.is_available()
+    else "cpu"
+)
+
+if __name__ == '__main__':
+    model = MNISTClassifier().to(device)  # move operations on GPU
+    hyper_params = HyperParams(
+        epochs=100,  # number of epochs
+        error_function=CrossEntropyLoss(),  # error function
+        optimizer=torch.optim.Rprop(model.parameters(), lr=0.01),  # optimizer
+        batch_size=32
+    )
+
+    custom_dataset = CustomDataset(
+        root='./data',
+        transforms=transforms.Compose([
+            v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)]),
+            transforms.Normalize((0.1307,), (0.3081,))
+        ])
+    )
+
+    training_set, validation_set = custom_dataset.get_training_set(batch_size=hyper_params.batch_size, validation_percentage=0.2)
+    test_set = custom_dataset.get_test_set(batch_size=32)
+
+    trainer = Trainer(
+        model=model,  # model to train
+        hyper_params=hyper_params,
+        training_ds=training_set,
+        validation_ds=validation_set,
+        testing_ds=test_set,
+        device=device
+    )
+
+    if not model.load_model():
+        # print(torch.version.cuda)  # Deve restituire la versione di CUDA installata
+        # print(torch.cuda.is_available())  # Deve restituire True
+        # print(device)
+        trainer.batch_train()
+    else:
+        trainer.test()
