@@ -4,7 +4,7 @@ from sympy.strategies.core import switch
 
 from hyper_params import HyperParams, ActivationFunction, NetworkHyperParams
 
-model_file_path = '.'
+model_file_path = '/model'
 
 
 class MNISTClassifier(nn.Module):

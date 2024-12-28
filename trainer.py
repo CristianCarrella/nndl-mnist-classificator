@@ -4,17 +4,30 @@ from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 from hyper_params import HyperParams, NetworkHyperParams
 from network import MNISTClassifier
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+class NetworkResults:
+    def __init__(self):
+        self.iteration = 0
+        self.train_accuracy_history = []
+        self.test_accuracy_history = []
+        self.confusion_matrix_result = []
+
+    def get_iteration(self):
+        self.iteration +=1
+        return self.iteration - 1
 
 
 class Trainer:
-
-    def __init__(self, model: MNISTClassifier,
+    def __init__(self,
+                 model: MNISTClassifier,
                  hyper_params: HyperParams,
                  training_ds: DataLoader,
                  validation_ds: DataLoader,
                  testing_ds: DataLoader,
                  device: str,
                  network_hyper_params: NetworkHyperParams,
+                 network_results = NetworkResults()
                  ):
         self.model = model
         self.hyper_params = hyper_params
@@ -23,6 +36,7 @@ class Trainer:
         self.testing_ds = testing_ds
         self.device = device
         self.network_hyper_params = network_hyper_params
+        self.network_results = network_results
 
         # Initialize lists to store training and validation losses
         self.train_losses = []
@@ -81,6 +95,7 @@ class Trainer:
 
         self.plot_training_graph()
 
+
     def test(self):
         self.model.eval()
         torch.no_grad()
@@ -88,16 +103,28 @@ class Trainer:
         good_test = 0
         total_test = 0
 
+        all_labels = []
+        all_predictions = []
+
         for images, labels in self.testing_ds:
             outputs = self.model(images.to(self.device))
             predicted_class_indices = torch.argmax(outputs, dim=1)
+
+            # Aggiungi le etichette e le predizioni per la matrice di confusione
+            all_labels.extend(labels.cpu().numpy())
+            all_predictions.extend(predicted_class_indices.cpu().numpy())
+
             good_test += (predicted_class_indices == labels.to(self.device)).sum().item()
             total_test += labels.size(0)
 
+        cm = confusion_matrix(all_labels, all_predictions)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+        disp.plot()
+        plt.savefig(f'./confusion_matrix/{self.network_results.get_iteration()}_confusion_matrix.png', format='png', dpi=300)
+        plt.close()
+
         accuracy = (good_test / total_test) * 100
         print(f"Test Accuracy: {good_test}/{total_test} ({accuracy:.2f}%)")
-
-        self.plot_testing_graph(good_test, total_test)
 
     def plot_training_graph(self):
         if len(self.train_losses) == self.hyper_params.epochs and len(
@@ -136,3 +163,9 @@ class Trainer:
     #     plt.title('Testing Accuracy')
     #     plt.ylim(0, 100)
     #     plt.show()
+
+
+    def log_results(self):
+        f = open("log.txt", "a")
+        f.write()
+        f.close()
