@@ -1,0 +1,130 @@
+{
+    "0": {
+        "test": [
+            {
+                "id": 0,
+                "type": "test",
+                "test_accuracy": 97.38
+            }
+        ],
+        "train": [
+            {
+                "id": 0,
+                "type": "train",
+                "number_of_epochs": 40,
+                "val_loss": 0.10100797563791275,
+                "val_acc": 97.19166666666666
+            }
+        ],
+        "params": [
+            {
+                "id": 0,
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "0": {
+        "test": [
+            {
+                "id": 0,
+                "type": "test",
+                "test_accuracy": 97.28999999999999
+            }
+        ],
+        "train": [
+            {
+                "id": 0,
+                "type": "train",
+                "number_of_epochs": 41,
+                "val_loss": 0.09621421992778778,
+                "val_acc": 97.19166666666666
+            },
+            {
+                "id": 0,
+                "type": "train",
+                "number_of_epochs": 40,
+                "val_loss": 0.09182164818048477,
+                "val_acc": 97.425
+            }
+        ],
+        "params": [
+            {
+                "id": 0,
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "0": {
+        "test": [
+            {
+                "id": 0,
+                "type": "test",
+                "test_accuracy": 97.28999999999999
+            },
+            {
+                "id": 0,
+                "type": "test",
+                "test_accuracy": 97.47
+            }
+        ],
+        "train": [
+            {
+                "id": 0,
+                "type": "train",
+                "number_of_epochs": 41,
+                "val_loss": 0.09621421992778778,
+                "val_acc": 97.19166666666666
+            },
+            {
+                "id": 0,
+                "type": "train",
+                "number_of_epochs": 40,
+                "val_loss": 0.09182164818048477,
+                "val_acc": 97.425
+            }
+        ],
+        "params": [
+            {
+                "id": 0,
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
