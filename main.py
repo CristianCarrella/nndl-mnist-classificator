@@ -8,7 +8,7 @@ import torchvision.transforms as transforms
 from dataset import CustomDataset
 from hyper_params import HyperParams, ActivationFunction, NetworkHyperParams
 from logger import log_results
-from trainer import Trainer, iterations
+from trainer import Trainer
 from network import MNISTClassifier
 
 device = (
@@ -123,7 +123,6 @@ if __name__ == '__main__':
 
     ]
 
-
     custom_dataset = CustomDataset(
         root='./data',
         transforms=transforms.Compose([
@@ -139,16 +138,20 @@ if __name__ == '__main__':
 
     test_set = custom_dataset.get_test_set()
     epochs = 100
+
     print(f"Training set length: {len(training_set.dataset)}")
     print(f"Validation set length: {len(validation_set.dataset)}")
     print(f"Test set length: {len(test_set.dataset)}")
-
+    iterations = 0
     param_combinations = itertools.product(hidden_layers, activation_functions)
     for combination in param_combinations:
-        if combination[0].__len__() - 1 == combination[1].__len__():  # combinations are valid only if activation functions are 1 less of hidden layers
-            log_results({"id": iterations, "type": "params", "hidden_layer": combination[0],
-                         "activation_functions": [el.value[0] for el in combination[1]], "max_epochs": epochs,
-                         "error_function": "CrossEntropyLoss"})
+        if combination[0].__len__() - 1 == combination[
+            1].__len__():  # combinations are valid only if activation functions are 1 less of hidden layers
+
+            log_results(iterations, {"type": "params", "hidden_layer": combination[0],
+                                     "activation_functions": [el.value[0] for el in combination[1]],
+                                     "max_epochs": epochs,
+                                     "error_function": "CrossEntropyLoss"})
 
             network_hyper_params = NetworkHyperParams(
                 hidden_layer=combination[0],
@@ -181,13 +184,14 @@ if __name__ == '__main__':
                 validation_ds=validation_set,
                 testing_ds=test_set,
                 device=device,
-                network_hyper_params=network_hyper_params
+                network_hyper_params=network_hyper_params,
+                iteration=iterations
             )
 
             trainer.train()
             trainer.test()
-
             iterations += 1
+
             # if not model.load_model():
             #     print(f"Is GPU available: {torch.cuda.is_available()}")
             # else:

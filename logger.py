@@ -1,12 +1,16 @@
 import json
 
 results = {}
+saved_ids = set()
 
 
-def log_results(dictionary):
-    global results
+def log_results(iteration, dictionary):
+    global results, saved_ids
+    print("iteration")
+    print(iteration)
+    print(dictionary)
 
-    entry_id = dictionary["id"]
+    entry_id = str(iteration)
     op_type = dictionary["type"]
 
     if entry_id not in results:
@@ -22,8 +26,11 @@ def log_results(dictionary):
         case _:
             raise ValueError(f"Tipo sconosciuto: {op_type}")
 
-    if all(results[entry_id][key] for key in ["test", "train", "params"]):
+    # Controlla se i dati per questo ID sono completi e non sono già stati salvati
+    if (entry_id not in saved_ids and
+            all(results[entry_id][key] for key in ["test", "train", "params"])):
         with open("log.txt", "a") as file:
             json.dump({entry_id: results[entry_id]}, file, indent=4)
             file.write("\n")
+        saved_ids.add(entry_id)  # Segna l'ID come salvato
         print(f"ID {entry_id} salvato su file.")
