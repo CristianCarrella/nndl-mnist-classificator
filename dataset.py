@@ -3,16 +3,11 @@ from torchvision import datasets
 
 
 class CustomDataset(Dataset):
-    """
-      Classe personalizzata per il dataset MNIST estesa con funzionalità:
-       - per caricare il dataset MNIST
-       - suddividere in set di addestramento e validazione
-       - ottenere il set di test.
 
-      Attributi:
-          full_test_set: Il dataset di test MNIST.
-          get_training_set: Si ottengono il training_set ed il validation_set
-      """
+    # Class that loads the MNIST dataset from PyTorch and:
+    #  - Splits it into training and validation sets (80%-20%)
+    #  - Retrieves the test set.
+    #  MNIST contains 60,000 images for training and 10,000 for testing.
 
     def __init__(self, root, transforms=None, target_transform=None):
         self.__full_training_set = datasets.MNIST(

@@ -1,8 +1,13 @@
 import torch
 import torch.nn as nn
-from sympy.strategies.core import switch
 
-from hyper_params import HyperParams, ActivationFunction, NetworkHyperParams
+from hyper_params import NetworkHyperParams
+
+# This module defines the MNISTClassifier class, a neural network model for classifying MNIST images. Key functionalities include:
+#
+# - Initialization: Dynamically constructs the layers of the network based on the specified hyperparameters, including hidden layers and activation functions.
+# - Forward Pass: Implements the forward propagation logic to process input images through the layers and produce class predictions.
+# - Save and Load: Provides methods to save the model's state to a file and load it later for inference or further training.
 
 model_file_path = '.'
 
@@ -27,7 +32,8 @@ class MNISTClassifier(nn.Module):
         x = x.view(x.size(0), -1)  # [batch_size, 784]
         for layer, act in zip(self.layers, self.acts):
             x = act(layer(x))
-        x = self.soft_max(self.output(x))
+        x = self.output(x)
+        #x = self.soft_max(self.output(x))
         return x
 
     def save_model(self):

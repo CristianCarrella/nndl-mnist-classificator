@@ -1,0 +1,118 @@
+Training completed for model with [784, 512, 256, 128, 64] layers and activation function ActivationFunction.HYPERBOLIC_TANGENT
+Epochs: 100
+Optimizer: Rprop (
+Parameter Group 0
+    capturable: False
+    differentiable: False
+    etas: (0.5, 1.2)
+    foreach: None
+    lr: 0.01
+    maximize: False
+    step_sizes: (1e-06, 50)
+)
+Hidden layers: [784, 512, 256, 128, 64]
+Training and Validation Metrics per Epoch:
+Epoch 1: Training Loss: 2.302742, Validation Loss: 1.876917, Training Accuracy: 0.0659, Validation Accuracy: 0.4465
+Epoch 2: Training Loss: 1.868063, Validation Loss: 1.848740, Training Accuracy: 0.4574, Validation Accuracy: 0.4562
+Epoch 3: Training Loss: 1.850077, Validation Loss: 1.741330, Training Accuracy: 0.4609, Validation Accuracy: 0.3062
+Epoch 4: Training Loss: 1.733932, Validation Loss: 1.394124, Training Accuracy: 0.3029, Validation Accuracy: 0.5311
+Epoch 5: Training Loss: 1.381985, Validation Loss: 1.320566, Training Accuracy: 0.5395, Validation Accuracy: 0.6021
+Epoch 6: Training Loss: 1.318944, Validation Loss: 0.977185, Training Accuracy: 0.6063, Validation Accuracy: 0.6933
+Epoch 7: Training Loss: 0.977090, Validation Loss: 0.856099, Training Accuracy: 0.6930, Validation Accuracy: 0.7513
+Epoch 8: Training Loss: 0.852337, Validation Loss: 0.706299, Training Accuracy: 0.7571, Validation Accuracy: 0.8046
+Epoch 9: Training Loss: 0.708433, Validation Loss: 0.588822, Training Accuracy: 0.8015, Validation Accuracy: 0.8321
+Epoch 10: Training Loss: 0.589031, Validation Loss: 0.509825, Training Accuracy: 0.8309, Validation Accuracy: 0.8618
+Epoch 11: Training Loss: 0.507679, Validation Loss: 0.431435, Training Accuracy: 0.8614, Validation Accuracy: 0.8887
+Epoch 12: Training Loss: 0.428772, Validation Loss: 0.382336, Training Accuracy: 0.8874, Validation Accuracy: 0.8988
+Epoch 13: Training Loss: 0.372843, Validation Loss: 0.331280, Training Accuracy: 0.9004, Validation Accuracy: 0.9120
+Epoch 14: Training Loss: 0.321643, Validation Loss: 0.296602, Training Accuracy: 0.9137, Validation Accuracy: 0.9200
+Epoch 15: Training Loss: 0.283119, Validation Loss: 0.265475, Training Accuracy: 0.9229, Validation Accuracy: 0.9276
+Epoch 16: Training Loss: 0.250401, Validation Loss: 0.241117, Training Accuracy: 0.9314, Validation Accuracy: 0.9327
+Epoch 17: Training Loss: 0.224670, Validation Loss: 0.218957, Training Accuracy: 0.9376, Validation Accuracy: 0.9393
+Epoch 18: Training Loss: 0.199690, Validation Loss: 0.200110, Training Accuracy: 0.9440, Validation Accuracy: 0.9447
+Epoch 19: Training Loss: 0.178630, Validation Loss: 0.187880, Training Accuracy: 0.9500, Validation Accuracy: 0.9467
+Epoch 20: Training Loss: 0.161183, Validation Loss: 0.174114, Training Accuracy: 0.9542, Validation Accuracy: 0.9508
+Epoch 21: Training Loss: 0.144128, Validation Loss: 0.162990, Training Accuracy: 0.9597, Validation Accuracy: 0.9533
+Epoch 22: Training Loss: 0.129766, Validation Loss: 0.154863, Training Accuracy: 0.9639, Validation Accuracy: 0.9570
+Epoch 23: Training Loss: 0.116514, Validation Loss: 0.144914, Training Accuracy: 0.9680, Validation Accuracy: 0.9597
+Epoch 24: Training Loss: 0.104815, Validation Loss: 0.139565, Training Accuracy: 0.9720, Validation Accuracy: 0.9597
+Epoch 25: Training Loss: 0.093538, Validation Loss: 0.133295, Training Accuracy: 0.9749, Validation Accuracy: 0.9624
+Epoch 26: Training Loss: 0.083071, Validation Loss: 0.127921, Training Accuracy: 0.9770, Validation Accuracy: 0.9633
+Epoch 27: Training Loss: 0.073589, Validation Loss: 0.125460, Training Accuracy: 0.9803, Validation Accuracy: 0.9646
+Epoch 28: Training Loss: 0.064666, Validation Loss: 0.121303, Training Accuracy: 0.9832, Validation Accuracy: 0.9667
+Epoch 29: Training Loss: 0.056268, Validation Loss: 0.120324, Training Accuracy: 0.9857, Validation Accuracy: 0.9672
+Epoch 30: Training Loss: 0.048298, Validation Loss: 0.119058, Training Accuracy: 0.9879, Validation Accuracy: 0.9673
+Epoch 31: Training Loss: 0.041432, Validation Loss: 0.119929, Training Accuracy: 0.9902, Validation Accuracy: 0.9685
+Epoch 32: Training Loss: 0.035870, Validation Loss: 0.118255, Training Accuracy: 0.9915, Validation Accuracy: 0.9680
+Epoch 33: Training Loss: 0.030827, Validation Loss: 0.118870, Training Accuracy: 0.9932, Validation Accuracy: 0.9691
+Epoch 34: Training Loss: 0.026272, Validation Loss: 0.118098, Training Accuracy: 0.9940, Validation Accuracy: 0.9693
+Epoch 35: Training Loss: 0.022297, Validation Loss: 0.118690, Training Accuracy: 0.9955, Validation Accuracy: 0.9699
+Epoch 36: Training Loss: 0.018803, Validation Loss: 0.120465, Training Accuracy: 0.9964, Validation Accuracy: 0.9703
+Epoch 37: Training Loss: 0.015638, Validation Loss: 0.121974, Training Accuracy: 0.9972, Validation Accuracy: 0.9702
+Epoch 38: Training Loss: 0.012851, Validation Loss: 0.125440, Training Accuracy: 0.9978, Validation Accuracy: 0.9714
+Epoch 39: Training Loss: 0.010559, Validation Loss: 0.128792, Training Accuracy: 0.9983, Validation Accuracy: 0.9701
+Epoch 40: No data available for this epoch due to early stopping
+Epoch 41: No data available for this epoch due to early stopping
+Epoch 42: No data available for this epoch due to early stopping
+Epoch 43: No data available for this epoch due to early stopping
+Epoch 44: No data available for this epoch due to early stopping
+Epoch 45: No data available for this epoch due to early stopping
+Epoch 46: No data available for this epoch due to early stopping
+Epoch 47: No data available for this epoch due to early stopping
+Epoch 48: No data available for this epoch due to early stopping
+Epoch 49: No data available for this epoch due to early stopping
+Epoch 50: No data available for this epoch due to early stopping
+Epoch 51: No data available for this epoch due to early stopping
+Epoch 52: No data available for this epoch due to early stopping
+Epoch 53: No data available for this epoch due to early stopping
+Epoch 54: No data available for this epoch due to early stopping
+Epoch 55: No data available for this epoch due to early stopping
+Epoch 56: No data available for this epoch due to early stopping
+Epoch 57: No data available for this epoch due to early stopping
+Epoch 58: No data available for this epoch due to early stopping
+Epoch 59: No data available for this epoch due to early stopping
+Epoch 60: No data available for this epoch due to early stopping
+Epoch 61: No data available for this epoch due to early stopping
+Epoch 62: No data available for this epoch due to early stopping
+Epoch 63: No data available for this epoch due to early stopping
+Epoch 64: No data available for this epoch due to early stopping
+Epoch 65: No data available for this epoch due to early stopping
+Epoch 66: No data available for this epoch due to early stopping
+Epoch 67: No data available for this epoch due to early stopping
+Epoch 68: No data available for this epoch due to early stopping
+Epoch 69: No data available for this epoch due to early stopping
+Epoch 70: No data available for this epoch due to early stopping
+Epoch 71: No data available for this epoch due to early stopping
+Epoch 72: No data available for this epoch due to early stopping
+Epoch 73: No data available for this epoch due to early stopping
+Epoch 74: No data available for this epoch due to early stopping
+Epoch 75: No data available for this epoch due to early stopping
+Epoch 76: No data available for this epoch due to early stopping
+Epoch 77: No data available for this epoch due to early stopping
+Epoch 78: No data available for this epoch due to early stopping
+Epoch 79: No data available for this epoch due to early stopping
+Epoch 80: No data available for this epoch due to early stopping
+Epoch 81: No data available for this epoch due to early stopping
+Epoch 82: No data available for this epoch due to early stopping
+Epoch 83: No data available for this epoch due to early stopping
+Epoch 84: No data available for this epoch due to early stopping
+Epoch 85: No data available for this epoch due to early stopping
+Epoch 86: No data available for this epoch due to early stopping
+Epoch 87: No data available for this epoch due to early stopping
+Epoch 88: No data available for this epoch due to early stopping
+Epoch 89: No data available for this epoch due to early stopping
+Epoch 90: No data available for this epoch due to early stopping
+Epoch 91: No data available for this epoch due to early stopping
+Epoch 92: No data available for this epoch due to early stopping
+Epoch 93: No data available for this epoch due to early stopping
+Epoch 94: No data available for this epoch due to early stopping
+Epoch 95: No data available for this epoch due to early stopping
+Epoch 96: No data available for this epoch due to early stopping
+Epoch 97: No data available for this epoch due to early stopping
+Epoch 98: No data available for this epoch due to early stopping
+Epoch 99: No data available for this epoch due to early stopping
+Epoch 100: No data available for this epoch due to early stopping
+
+Test Results:
+Accuracy: 9701/10000 (97.01%)
+Confusion matrix displayed in output.
