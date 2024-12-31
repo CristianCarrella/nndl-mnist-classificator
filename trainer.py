@@ -169,7 +169,7 @@ class Trainer:
         plt.grid(True)
 
         plt.savefig(f"./functions_plots/{self.iteration}_function.png", format='png', dpi=300)
-        plt.show()
+        # plt.show()
         plt.close()
 
         # Plot Precision, Recall, F1 Score

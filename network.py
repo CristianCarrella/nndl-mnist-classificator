@@ -30,7 +30,7 @@ class MNISTClassifier(nn.Module):
         return x
 
     def save_model(self):
-        # torch.save(self.state_dict(), f"{model_file_path}/model")
+        torch.save(self.state_dict(), f"{model_file_path}/model")
         print("model saved")
 
     def load_model(self):

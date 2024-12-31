@@ -1,0 +1,1408 @@
+{
+    "0": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.23
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 37,
+                "val_loss": 0.10121376812458038,
+                "val_acc": 97.05
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "1": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.42
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 41,
+                "val_loss": 0.0918443500995636,
+                "val_acc": 97.19166666666666
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "2": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.39
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 37,
+                "val_loss": 0.11178196221590042,
+                "val_acc": 97.03333333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    32
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "3": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 98.03
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 42,
+                "val_loss": 0.07173629105091095,
+                "val_acc": 97.86666666666666
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    32
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "4": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 96.95
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 36,
+                "val_loss": 0.11666931957006454,
+                "val_acc": 96.79166666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    400,
+                    100,
+                    25
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "5": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.49
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 40,
+                "val_loss": 0.10340394079685211,
+                "val_acc": 97.09166666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    400,
+                    100,
+                    25
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "6": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.04
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 35,
+                "val_loss": 0.11592584103345871,
+                "val_acc": 96.80833333333334
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    400,
+                    100,
+                    25
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "7": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.25
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 46,
+                "val_loss": 0.10019616782665253,
+                "val_acc": 97.24166666666666
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    400,
+                    100,
+                    25
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "8": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.38
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 40,
+                "val_loss": 0.10969740152359009,
+                "val_acc": 97.175
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    400,
+                    100,
+                    25
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "9": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.25
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 41,
+                "val_loss": 0.10520528256893158,
+                "val_acc": 97.08333333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    400,
+                    100,
+                    25
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "10": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.50999999999999
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 39,
+                "val_loss": 0.09088096767663956,
+                "val_acc": 97.475
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    128
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "11": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.52
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 39,
+                "val_loss": 0.08732835948467255,
+                "val_acc": 97.61666666666666
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    128
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "12": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.69
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 35,
+                "val_loss": 0.0914345383644104,
+                "val_acc": 97.55833333333334
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    128
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "13": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.95
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 34,
+                "val_loss": 0.07697607576847076,
+                "val_acc": 97.86666666666666
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    512,
+                    128
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "14": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 96.93
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 37,
+                "val_loss": 0.11881913989782333,
+                "val_acc": 96.79166666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    256,
+                    64,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "15": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.0
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 46,
+                "val_loss": 0.11414286494255066,
+                "val_acc": 96.78333333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    256,
+                    64,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "16": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 96.87
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 38,
+                "val_loss": 0.1254495233297348,
+                "val_acc": 96.68333333333334
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    256,
+                    64,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "17": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.19
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 43,
+                "val_loss": 0.10562191903591156,
+                "val_acc": 97.09166666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    256,
+                    64,
+                    32
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "18": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.19
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 38,
+                "val_loss": 0.11581296473741531,
+                "val_acc": 96.925
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    256,
+                    64,
+                    32
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "19": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.13000000000001
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 40,
+                "val_loss": 0.11154904216527939,
+                "val_acc": 96.975
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    256,
+                    64,
+                    32
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "20": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.46000000000001
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 40,
+                "val_loss": 0.09415962547063828,
+                "val_acc": 97.2
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    412,
+                    50
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "21": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.16
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 43,
+                "val_loss": 0.09673807770013809,
+                "val_acc": 97.24166666666666
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    412,
+                    50
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "22": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.58
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 35,
+                "val_loss": 0.0915774405002594,
+                "val_acc": 97.31666666666666
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    412,
+                    50
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "23": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.92999999999999
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 41,
+                "val_loss": 0.07751335948705673,
+                "val_acc": 97.79166666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    412,
+                    50
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "24": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.36
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 37,
+                "val_loss": 0.10906956344842911,
+                "val_acc": 97.00833333333334
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    300,
+                    100
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "25": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.65
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 35,
+                "val_loss": 0.09077746421098709,
+                "val_acc": 97.41666666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    300,
+                    100
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "26": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.6
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 34,
+                "val_loss": 0.10554217547178268,
+                "val_acc": 97.275
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    300,
+                    100
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "27": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 78.05
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 10,
+                "val_loss": 0.667146623134613,
+                "val_acc": 77.85833333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    300,
+                    100
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "28": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.66
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 35,
+                "val_loss": 0.09749914705753326,
+                "val_acc": 97.40833333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    300,
+                    100
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "29": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.55
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 37,
+                "val_loss": 0.08747532963752747,
+                "val_acc": 97.475
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    300,
+                    100
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "30": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.36
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 34,
+                "val_loss": 0.09865283221006393,
+                "val_acc": 97.35
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    1024,
+                    512,
+                    256
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "31": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 56.02
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 7,
+                "val_loss": 2.2434186935424805,
+                "val_acc": 55.916666666666664
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    1024,
+                    512,
+                    256
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "32": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.19
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 34,
+                "val_loss": 0.11036989092826843,
+                "val_acc": 97.09166666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    1024,
+                    512,
+                    256
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "33": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 56.71000000000001
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 7,
+                "val_loss": 1.945655107498169,
+                "val_acc": 54.65833333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    1024,
+                    512,
+                    256
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "34": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 86.19
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 11,
+                "val_loss": 0.5830126404762268,
+                "val_acc": 86.26666666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    1024,
+                    512,
+                    256
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "35": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 60.4
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 7,
+                "val_loss": 1.8400752544403076,
+                "val_acc": 59.61666666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    1024,
+                    512,
+                    256
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "36": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.44
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 42,
+                "val_loss": 0.10028114914894104,
+                "val_acc": 97.14166666666667
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    25
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "37": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.63
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 41,
+                "val_loss": 0.09401911497116089,
+                "val_acc": 97.45833333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    25
+                ],
+                "activation_functions": [
+                    "Hyperbolic Tangent",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "38": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.33000000000001
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 39,
+                "val_loss": 0.11481056362390518,
+                "val_acc": 96.90833333333333
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    25
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Hyperbolic Tangent"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
+{
+    "39": {
+        "test": [
+            {
+                "type": "test",
+                "test_accuracy": 97.78
+            }
+        ],
+        "train": [
+            {
+                "type": "train",
+                "number_of_epochs": 43,
+                "val_loss": 0.07888971269130707,
+                "val_acc": 97.75
+            }
+        ],
+        "params": [
+            {
+                "type": "params",
+                "hidden_layer": [
+                    784,
+                    600,
+                    25
+                ],
+                "activation_functions": [
+                    "Relu",
+                    "Leaky Relu"
+                ],
+                "max_epochs": 100,
+                "error_function": "CrossEntropyLoss"
+            }
+        ]
+    }
+}
