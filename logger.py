@@ -29,7 +29,7 @@ def log_results(iteration, dictionary):
     # Controlla se i dati per questo ID sono completi e non sono già stati salvati
     if (entry_id not in saved_ids and
             all(results[entry_id][key] for key in ["test", "train", "params"])):
-        with open("log.txt", "a") as file:
+        with open("confusion_matrix/log.txt", "a") as file:
             json.dump({entry_id: results[entry_id]}, file, indent=4)
             file.write("\n")
         saved_ids.add(entry_id)  # Segna l'ID come salvato

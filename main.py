@@ -1,6 +1,7 @@
 import itertools
 
 import torch
+from PIL import Image
 from torch.nn import CrossEntropyLoss
 from torchvision.transforms import v2
 import torchvision.transforms as transforms
@@ -31,6 +32,17 @@ def generate_layer_combinations(hidden_layers_list):
 
 
 if __name__ == '__main__':
+    # model = MNISTClassifier(hyper_param=NetworkHyperParams([784, 512, 32], [ActivationFunction.RELU, ActivationFunction.RELU]))
+    # model.load_model()
+    # image = Image.open("drawing_28x28.png").convert("L")  # Converti in scala di grigi se necessario
+    # transform = transforms.Compose([
+    #     transforms.ToTensor()  # Converte in un tensore con valori normalizzati tra 0 e 1
+    # ])
+    # tensor_image = transform(image)
+    # output = model(tensor_image)
+    # predicted_class = torch.argmax(output, dim=1).item()
+    # print(f"output {predicted_class}")
+
     hidden_layers = [
         [784, 512, 32],
         [784, 512, 256, 128, 32],  # Aggiunta di layer intermedi
@@ -192,7 +204,3 @@ if __name__ == '__main__':
             trainer.test()
             iterations += 1
 
-            # if not model.load_model():
-            #     print(f"Is GPU available: {torch.cuda.is_available()}")
-            # else:
-            #     trainer.test()
