@@ -85,8 +85,10 @@ if __name__ == '__main__':
 
             trainer.batch_train()
 
-            log_file_name = f"training_details/{config_len}_layers_{activation_function}.txt"
-            os.makedirs("training_details", exist_ok=True)
+            #log_file_name = f"training_details/{config_len}_layers_{activation_function}.txt"
+            #os.makedirs("training_detailsGeneralizationLoss", exist_ok=True)
+            log_file_name = f"training_detailsGeneralizationLoss/{config_len}_layers_{activation_function}.txt"
+            os.makedirs("training_detailsGeneralizationLoss", exist_ok=True)
 
             with open(log_file_name, 'w') as log_file:
                 log_file.write(

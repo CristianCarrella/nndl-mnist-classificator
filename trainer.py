@@ -16,9 +16,7 @@ from network import MNISTClassifier
 # - Testing (with Confusion Matrix): Evaluates the model on the test dataset, calculates overall accuracy, and generates a confusion matrix saved as an image.
 # - Visualization (chart, log) : Plots and saves graphs of training/validation loss and accuracy over epochs, with clear labeling of model configurations.
 
-
 class Trainer:
-
     def __init__(self, model: MNISTClassifier,
                  hyper_params: HyperParams,
                  training_ds: DataLoader,
@@ -26,7 +24,7 @@ class Trainer:
                  testing_ds: DataLoader,
                  device: str,
                  network_hyper_params: NetworkHyperParams,
-                 ):
+                 gen_loss_threshold: float = 0.2):
         self.model = model
         self.hyper_params = hyper_params
         self.training_ds = training_ds
@@ -34,43 +32,42 @@ class Trainer:
         self.testing_ds = testing_ds
         self.device = device
         self.network_hyper_params = network_hyper_params
+        self.gen_loss_threshold = gen_loss_threshold
+        self.last_saved_epoch = None
 
         self.train_losses = []
         self.validation_losses = []
-
         self.train_accuracies = []
         self.validation_accuracies = []
-
         self.good_test = 0
         self.total_test = 0
+
+        # Early stopping conditions
+        self.patience_triggered = False
+        self.generalization_triggered = False
+        self.early_stopping_epochs = {}
 
     def batch_train(self):
         mnist_classifier = self.model
         params = self.hyper_params
         prev_val_loss = sys.maxsize
         early_stop_counter = 0
+        min_val_loss = sys.maxsize
 
         for e in range(self.hyper_params.epochs):
             mnist_classifier.train()
-
-            total_train_loss = 0.0
+            total_train_loss, correct_train, total_train = 0.0, 0, 0
             num_train_batches = 0
-            correct_train = 0
-            total_train = 0
 
             for batch, label in self.training_ds:
                 params.optimizer.zero_grad()
-
                 train_output = mnist_classifier.forward(batch.to(self.device))
                 train_loss = params.error_function(train_output, label.to(self.device))
-
                 train_loss.backward()
                 params.optimizer.step()
 
                 total_train_loss += train_loss.item()
                 num_train_batches += 1
-
-                # Calculate training accuracy
                 predicted = torch.argmax(train_output, dim=1)
                 correct_train += (predicted == label.to(self.device)).sum().item()
                 total_train += label.size(0)
@@ -80,17 +77,14 @@ class Trainer:
             train_accuracy = correct_train / total_train
             self.train_accuracies.append(train_accuracy)
 
-            total_validation_loss = 0.0
+            total_validation_loss, correct_val, total_val = 0.0, 0, 0
             num_val_batches = 0
-            correct_val = 0
-            total_val = 0
 
             for val_batch, val_label in self.validation_ds:
                 output_validation = mnist_classifier.forward(val_batch.to(self.device))
                 validation_loss = params.error_function(output_validation, val_label.to(self.device))
                 total_validation_loss += validation_loss.item()
                 num_val_batches += 1
-
                 predicted_val = torch.argmax(output_validation, dim=1)
                 correct_val += (predicted_val == val_label.to(self.device)).sum().item()
                 total_val += val_label.size(0)
@@ -100,22 +94,40 @@ class Trainer:
             val_accuracy = correct_val / total_val
             self.validation_accuracies.append(val_accuracy)
 
-            print(f"Epoch {e + 1}/{params.epochs}, Average Training Loss: {avg_train_loss:.6f}, "
-                  f"Average Validation Loss: {avg_validation_loss:.6f}, Training Accuracy: {train_accuracy:.4f}, "
-                  f"Validation Accuracy: {val_accuracy:.4f}")
+            print(f"Epoch {e + 1}/{params.epochs}, Training Loss: {avg_train_loss:.6f}, Validation Loss: {avg_validation_loss:.6f}, Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
 
-            # Early Stopping:
+            # Calcolo Generalization Loss
+            generalization_loss = 100 * ((avg_validation_loss / min_val_loss) - 1)
+            print(f"Generalization Loss: {generalization_loss:.6f}")
+
+            # Controllo miglioramento del modello
             if avg_validation_loss < prev_val_loss:
                 prev_val_loss = avg_validation_loss
-                mnist_classifier.save_model()  # Save model only when there's improvement
-                early_stop_counter = 0  # Reset counter when loss improves
+                min_val_loss = avg_validation_loss
+                mnist_classifier.save_model()
+                early_stop_counter = 0
+                self.last_saved_epoch = e  # Salviamo l'epoca in cui è stato salvato il modello
             else:
-                early_stop_counter += 1  # Increment counter if no improvement
+                early_stop_counter += 1
 
-            # Stop training if no improvement in 5 consecutive epochs
-            if early_stop_counter >= 5:
-                print("Early stopping triggered: No improvement in validation loss for 5 epochs.")
+            # Early stopping condizioni
+            if not self.patience_triggered and early_stop_counter >= 5:
+                self.patience_triggered = True
+                self.early_stopping_epochs['patience'] = e
+                print("Early stopping triggered: Patience")
+                print(f"Test Accuracy after Patience early stop: {self.test()}")
+
+            if not self.generalization_triggered and generalization_loss > self.gen_loss_threshold and e > 10:
+                self.generalization_triggered = True
+                self.early_stopping_epochs['generalization_loss'] = e
+                print("Early stopping triggered: Generalization Loss")
+                print(f"Test Accuracy after Generalization Loss early stop: {self.test()}")
+
+            # Training si ferma quando entrambe le condizioni sono soddisfatte
+            if self.patience_triggered and self.generalization_triggered:
+                print("All early stopping conditions met. Stopping training.")
                 break
+
 
         self.plot_training_graph()
 
@@ -143,41 +155,57 @@ class Trainer:
         cm = confusion_matrix(all_labels, all_predictions)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 
-        # Plot and save confusion matrix
-        activation_name = str(self.network_hyper_params.activation_fun[0]).replace('ActivationFunction.',
-                                                                                   '')
-        num_layers = len(self.network_hyper_params.hidden_layer) - 1
+        os.makedirs("confusion_matricesGeneralizationLoss", exist_ok=True)
 
-        os.makedirs("confusion_matrices", exist_ok=True)
-
-        filename = f"confusion_matrices/{num_layers}_layers_{activation_name}_confusion_matrix.png"
+        filename = f"confusion_matricesGeneralizationLoss/{len(self.network_hyper_params.hidden_layer) - 1}_layers_{str(self.network_hyper_params.activation_fun[0]).replace('ActivationFunction.', '')}_confusion_matrix.png"
         disp.plot(cmap=plt.cm.Blues)
-        plt.title(f"Confusion Matrix\n{num_layers} Layers, {activation_name} Activation")
+        plt.title(f"Confusion Matrix")
         plt.savefig(filename)
         print(f"Confusion matrix saved as {filename}")
         plt.close()
+        return accuracy
 
     def plot_training_graph(self):
         if len(self.train_losses) > 0 and len(self.validation_losses) > 0:
+            # Calcoliamo la test accuracy finale
+            test_accuracy = self.test()
+
             plt.figure(figsize=(10, 6))
-            plt.plot(range(1, len(self.train_losses) + 1), self.train_losses, label='Training Loss')
-            plt.plot(range(1, len(self.validation_losses) + 1), self.validation_losses, label='Validation Loss')
-            plt.plot(range(1, len(self.train_accuracies) + 1), self.train_accuracies, label='Training Accuracy')
-            plt.plot(range(1, len(self.validation_accuracies) + 1), self.validation_accuracies, label='Validation Accuracy')
+            epochs = range(1, len(self.train_losses) + 1)
+
+            # Disegna le curve di loss e accuracy
+            plt.plot(epochs, self.train_losses, label='Training Loss', color='blue')
+            plt.plot(epochs, self.validation_losses, label='Validation Loss', color='red')
+            plt.plot(epochs, self.train_accuracies, label='Training Accuracy', color='green')
+            plt.plot(epochs, self.validation_accuracies, label='Validation Accuracy', color='purple')
+
+            # Aggiungi i punti di early stopping
+            colors = {'patience': 'yellow', 'generalization_loss': 'orange'}
+            for stop_type, epoch in self.early_stopping_epochs.items():
+                plt.scatter(epoch + 1, self.validation_losses[epoch], color=colors[stop_type], s=100,
+                            label=f'{stop_type} Stop', edgecolors='k', zorder=3)
+
+            # Aggiungi il cerchio per l'ultimo modello salvato (se esiste)
+            if self.last_saved_epoch is not None:
+                plt.scatter(self.last_saved_epoch + 1, self.validation_losses[self.last_saved_epoch], color='green',
+                            s=200, edgecolors='black', marker='o', label="Last Saved Model")
+
             plt.xlabel('Epoch')
             plt.ylabel('Loss / Accuracy')
 
             activation_name = str(self.network_hyper_params.activation_fun[0]).replace('ActivationFunction.', '')
 
+            # Aggiorna il titolo per includere la test accuracy finale
             plt.title(
-                f'Training and Validation Metrics \nList of neurons for each hidden layer: {self.network_hyper_params.hidden_layer} \nActivation function: {activation_name}')
+                f'Training and Validation Metrics\n{len(self.network_hyper_params.hidden_layer) - 1}_layers, {activation_name} Activation\nTest Accuracy: {test_accuracy:.2f}%')
             plt.legend()
             plt.grid(True)
 
-            os.makedirs("plots", exist_ok=True)
-            filename = f"plots/{len(self.network_hyper_params.hidden_layer) - 1}_layers_{activation_name}_epoch.png"
+            os.makedirs("plotsGeneralizationLoss", exist_ok=True)
+            filename = f"plotsGeneralizationLoss/{len(self.network_hyper_params.hidden_layer) - 1}_layers_{activation_name}_epoch.png"
             plt.savefig(filename)
             print(f"Ho salvato file {filename}")
             plt.close()
         else:
             print("No data available to create the training graph.")
+
