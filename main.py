@@ -1,3 +1,6 @@
+import random
+from math import floor
+
 import torch
 from torch.nn import CrossEntropyLoss
 from torchvision.transforms import v2
@@ -26,20 +29,58 @@ device = (
     else "cpu"
 )
 
+
+def random_search(n_iter=100):
+    configurations = []
+
+    for _ in range(n_iter):
+        num_layers = random.randint(1, 4)  # Numero di layer tra 1 e 5
+        hidden_units = [random.randint(16, 512) for _ in range(num_layers)]  # Numero di unità per ogni layer
+        hidden_units.insert(0, 784)
+        hidden_units.sort(reverse=True)
+        activation_functions = [random.choice(list(ActivationFunction)) for _ in
+                                range(num_layers)]  # Funzione di attivazione per ogni layer
+
+        config = {
+            "num_layers": num_layers,
+            "hidden_units": hidden_units,
+            "activation_functions": [activation.value for activation in activation_functions]
+        }
+        configurations.append(config)
+
+    return configurations
+
+
+def random_layer(layer_num_neurons, input_layer_size, min_layer_size):
+    single_config = [784]
+    input_layer_size = input_layer_size - min_layer_size
+    decrement = floor(input_layer_size / (layer_num_neurons + 1))
+    max_range = input_layer_size - 1
+    min_range = input_layer_size - decrement
+    for _ in range(layer_num_neurons):
+        random_number = random.randrange(min_range, max_range)
+        max_range = min_range - 1
+        min_range = min_range - decrement - 1
+        single_config.append(random_number)
+    return single_config
+
+
 if __name__ == '__main__':
+
+    con = random_search(10)
+    # activation_functions = con['activation_functions']
     activation_functions = [
         ActivationFunction.RELU,
         ActivationFunction.LEAKY_RELU,
         ActivationFunction.HYPERBOLIC_TANGENT,
     ]
 
-    neuron_configs = {
-        1: [784, 64],
-        2: [784, 256, 64],
-        3: [784, 256, 128, 64],
-        4: [784, 512, 256, 128, 64],
-        5: [784, 512, 256, 128, 64, 32],
-    }
+    neuron_configs = {}
+    for i in range(1, 6):
+        neuron_configs[i] = random_layer(i, 784, 32)
+
+    print(neuron_configs)
+
 
     for config_len, layers in neuron_configs.items():
         for activation_function in activation_functions:
