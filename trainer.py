@@ -96,22 +96,19 @@ class Trainer:
 
             print(f"Epoch {e + 1}/{params.epochs}, Training Loss: {avg_train_loss:.6f}, Validation Loss: {avg_validation_loss:.6f}, Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
 
-            # Calcolo Generalization Loss
             generalization_loss = 100 * ((avg_validation_loss / min_val_loss) - 1)
             print(f"Generalization Loss: {generalization_loss:.6f}")
 
-            # Controllo miglioramento del modello
             if avg_validation_loss < prev_val_loss:
                 prev_val_loss = avg_validation_loss
                 min_val_loss = avg_validation_loss
                 mnist_classifier.save_model()
                 early_stop_counter = 0
-                self.last_saved_epoch = e  # Salviamo l'epoca in cui è stato salvato il modello
+                self.last_saved_epoch = e
             else:
                 early_stop_counter += 1
 
-            # Early stopping condizioni
-            if not self.patience_triggered and early_stop_counter >= 5:
+            if not self.patience_triggered and early_stop_counter >= 5 and e >= 10:
                 self.patience_triggered = True
                 self.early_stopping_epochs['patience'] = e
                 print("Early stopping triggered: Patience")
@@ -150,42 +147,39 @@ class Trainer:
             all_predictions.extend(predicted_class_indices.cpu().numpy())
 
         accuracy = (self.good_test / self.total_test) * 100
-        print(f"Test Accuracy: {self.good_test}/{self.total_test} ({accuracy:.2f}%)")
-
         cm = confusion_matrix(all_labels, all_predictions)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 
-        os.makedirs("confusion_matricesGeneralizationLoss", exist_ok=True)
+        precision = np.diag(cm) / np.sum(cm, axis=0)
+        recall = np.diag(cm) / np.sum(cm, axis=1)
+        precision_avg = np.nanmean(precision) * 100
+        recall_avg = np.nanmean(recall) * 100
 
+        os.makedirs("confusion_matricesGeneralizationLoss", exist_ok=True)
         filename = f"confusion_matricesGeneralizationLoss/{len(self.network_hyper_params.hidden_layer) - 1}_layers_{str(self.network_hyper_params.activation_fun[0]).replace('ActivationFunction.', '')}_confusion_matrix.png"
         disp.plot(cmap=plt.cm.Blues)
-        plt.title(f"Confusion Matrix")
+        plt.title(f"{len(self.network_hyper_params.hidden_layer) - 1}_layers, Activation: {str(self.network_hyper_params.activation_fun[0]).replace('ActivationFunction.', '')} | Precision: {precision_avg:.2f}%, Recall: {recall_avg:.2f}%, Accuracy: {accuracy:.2f}%")
         plt.savefig(filename)
-        print(f"Confusion matrix saved as {filename}")
         plt.close()
-        return accuracy
+        return accuracy, precision_avg, recall_avg
 
     def plot_training_graph(self):
         if len(self.train_losses) > 0 and len(self.validation_losses) > 0:
-            # Calcoliamo la test accuracy finale
-            test_accuracy = self.test()
+            test_accuracy, test_precision, test_recall = self.test()
 
             plt.figure(figsize=(10, 6))
             epochs = range(1, len(self.train_losses) + 1)
 
-            # Disegna le curve di loss e accuracy
             plt.plot(epochs, self.train_losses, label='Training Loss', color='blue')
             plt.plot(epochs, self.validation_losses, label='Validation Loss', color='red')
             plt.plot(epochs, self.train_accuracies, label='Training Accuracy', color='green')
             plt.plot(epochs, self.validation_accuracies, label='Validation Accuracy', color='purple')
 
-            # Aggiungi i punti di early stopping
             colors = {'patience': 'yellow', 'generalization_loss': 'orange'}
             for stop_type, epoch in self.early_stopping_epochs.items():
                 plt.scatter(epoch + 1, self.validation_losses[epoch], color=colors[stop_type], s=100,
                             label=f'{stop_type} Stop', edgecolors='k', zorder=3)
 
-            # Aggiungi il cerchio per l'ultimo modello salvato (se esiste)
             if self.last_saved_epoch is not None:
                 plt.scatter(self.last_saved_epoch + 1, self.validation_losses[self.last_saved_epoch], color='green',
                             s=200, edgecolors='black', marker='o', label="Last Saved Model")
@@ -193,19 +187,22 @@ class Trainer:
             plt.xlabel('Epoch')
             plt.ylabel('Loss / Accuracy')
 
+            num_layers = len(self.network_hyper_params.hidden_layer) - 1
+            neurons_per_layer = self.network_hyper_params.hidden_layer
             activation_name = str(self.network_hyper_params.activation_fun[0]).replace('ActivationFunction.', '')
 
-            # Aggiorna il titolo per includere la test accuracy finale
-            plt.title(
-                f'Training and Validation Metrics\n{len(self.network_hyper_params.hidden_layer) - 1}_layers, {activation_name} Activation\nTest Accuracy: {test_accuracy:.2f}%')
+            plt.title(f'{num_layers} Layers: {neurons_per_layer} | {activation_name} Activation\n'
+                      f'Test Accuracy: {test_accuracy:.2f}% | Precision: {test_precision:.2f}% | Recall: {test_recall:.2f}%')
+
             plt.legend()
             plt.grid(True)
 
             os.makedirs("plotsGeneralizationLoss", exist_ok=True)
-            filename = f"plotsGeneralizationLoss/{len(self.network_hyper_params.hidden_layer) - 1}_layers_{activation_name}_epoch.png"
+            filename = f"plotsGeneralizationLoss/{num_layers}_layers_{activation_name}_epoch.png"
             plt.savefig(filename)
-            print(f"Ho salvato file {filename}")
+            print(f"Ho salvato il file {filename}")
             plt.close()
         else:
             print("No data available to create the training graph.")
+
 

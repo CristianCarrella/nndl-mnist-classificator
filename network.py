@@ -33,7 +33,6 @@ class MNISTClassifier(nn.Module):
         for layer, act in zip(self.layers, self.acts):
             x = act(layer(x))
         x = self.output(x)
-        #x = self.soft_max(self.output(x))
         return x
 
     def save_model(self):

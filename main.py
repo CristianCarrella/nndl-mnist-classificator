@@ -35,7 +35,7 @@ def random_search(n_iter=100):
 
     for _ in range(n_iter):
         num_layers = random.randint(1, 4)  # Numero di layer tra 1 e 5
-        hidden_units = [random.randint(16, 512) for _ in range(num_layers)]  # Numero di unità per ogni layer
+        hidden_units = [random.randint(16, 512) for _ in range(num_layers)]  # Numero di neuroni per ogni layer
         hidden_units.insert(0, 784)
         hidden_units.sort(reverse=True)
         activation_functions = [random.choice(list(ActivationFunction)) for _ in
@@ -68,7 +68,6 @@ def random_layer(layer_num_neurons, input_layer_size, min_layer_size):
 if __name__ == '__main__':
 
     con = random_search(10)
-    # activation_functions = con['activation_functions']
     activation_functions = [
         ActivationFunction.RELU,
         ActivationFunction.LEAKY_RELU,
@@ -126,8 +125,6 @@ if __name__ == '__main__':
 
             trainer.batch_train()
 
-            #log_file_name = f"training_details/{config_len}_layers_{activation_function}.txt"
-            #os.makedirs("training_detailsGeneralizationLoss", exist_ok=True)
             log_file_name = f"training_detailsGeneralizationLoss/{config_len}_layers_{activation_function}.txt"
             os.makedirs("training_detailsGeneralizationLoss", exist_ok=True)
 
